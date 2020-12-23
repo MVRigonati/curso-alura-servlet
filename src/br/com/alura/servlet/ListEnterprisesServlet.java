@@ -1,7 +1,6 @@
 package br.com.alura.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,11 +16,10 @@ public class ListEnterprisesServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Enterprise> enterprises = Database.getEnterprises();
-		
-		request.setAttribute("enterprises", enterprises);
+		request.setAttribute("enterprises", Database.getEnterprises());
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/listEnterprises.jsp");
 		dispatcher.forward(request, response);
+		
 	}
 
 }

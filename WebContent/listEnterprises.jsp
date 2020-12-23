@@ -1,20 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List, br.com.alura.servlet.Enterprise" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     
 <!DOCTYPE html>
 <html>
 <body style="font-size: larger; font-family: system-ui;">
 	Enterprises: <br />
 	<ul>
-		<%
-			List<Enterprise> enterprises = (List<Enterprise>) request.getAttribute("enterprises");
-			for (Enterprise enterprise : enterprises) {
-		%>
-			<li><%=enterprise.getName() %></li>
-		<%
-			}
-		%>
+		<c:forEach items="${enterprises}" var="e">
+			<li> ${e.name} - <fmt:formatDate value="${e.openDate}" pattern="dd/MM/yyyy" /> </li>
+		</c:forEach>
 	</ul>
 </body>
 </html>
