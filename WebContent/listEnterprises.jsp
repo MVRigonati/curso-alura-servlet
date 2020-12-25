@@ -7,11 +7,17 @@
 <!DOCTYPE html>
 <html>
 <body style="font-size: larger; font-family: system-ui;">
+	
+	<c:if test="${not empty enterpriseName}">
+		Enterprise named "${enterpriseName}" created successfully!
+	</c:if>
+	
 	Enterprises: <br />
 	<ul>
 		<c:forEach items="${enterprises}" var="e">
 			<li> ${e.name} - <fmt:formatDate value="${e.openDate}" pattern="dd/MM/yyyy" /> </li>
 		</c:forEach>
 	</ul>
+	
 </body>
 </html>

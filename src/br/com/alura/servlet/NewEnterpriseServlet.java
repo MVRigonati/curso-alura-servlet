@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,9 +33,7 @@ public class NewEnterpriseServlet extends HttpServlet {
 		
 		Database.add(new Enterprise(enterpriseName, enterpriseOpenDate));
 		
-		request.setAttribute("enterpriseName", enterpriseName);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/newEnterpriseCreated.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("listEnterprises");
 		
 	}
 	
