@@ -3,6 +3,9 @@
 <%@ page import="java.util.List, br.com.alura.servlet.Enterprise" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<c:url value="/removeEnterprise?id=" var="removeEnterpriseServletPath" />
+<c:url value="/showEnterprise?id=" var="showEnterpriseServletPath" />
     
 <!DOCTYPE html>
 <html>
@@ -15,7 +18,11 @@
 	Enterprises: <br />
 	<ul>
 		<c:forEach items="${enterprises}" var="e">
-			<li> ${e.name} - <fmt:formatDate value="${e.openDate}" pattern="dd/MM/yyyy" /> </li>
+			<li>
+				${e.name} - <fmt:formatDate value="${e.openDate}" pattern="dd/MM/yyyy" />
+				<a href="${removeEnterpriseServletPath}${e.id}">Remove</a>
+				<a href="${showEnterpriseServletPath}${e.id}">Edit</a>
+			</li>
 		</c:forEach>
 	</ul>
 	
