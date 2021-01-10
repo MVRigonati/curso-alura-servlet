@@ -1,4 +1,4 @@
-package br.com.alura.servlet;
+package br.com.alura.servlet.model;
 
 import java.util.ArrayList;
 import java.util.Collections;

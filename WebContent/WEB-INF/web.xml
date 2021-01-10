@@ -3,7 +3,7 @@
   <display-name>Servlet</display-name>
   
   <welcome-file-list>
-    <welcome-file>listEnterprises</welcome-file>
+    <welcome-file>enterprises?action=list</welcome-file>
   </welcome-file-list>
   
   <servlet>

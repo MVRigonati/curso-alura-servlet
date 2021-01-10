@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:url value="/newEnterprise" var="newEnterpriseServletPath" />
+<c:url value="/enterprise" var="enterpriseController" />
 
 <!DOCTYPE html>
 <html>
@@ -17,9 +17,11 @@
 </head>
 <body>
 
-	<form action="${newEnterpriseServletPath}" method="post" class="form">
+	<form action="${enterpriseController}" method="post" class="form">
 		Name: <input name="name" /> <br />
 		Open Date: <input name="openDate" /> <br />
+		
+		<input type="hidden" name="action" value="add">
 		<input type="submit" />
 	</form>
 

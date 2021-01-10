@@ -1,4 +1,4 @@
-package br.com.alura.servlet;
+package br.com.alura.servlet.action;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -6,18 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/newEnterprise")
-public class NewEnterpriseServlet extends HttpServlet {
-	
-	private static final long serialVersionUID = 1L;
+import br.com.alura.servlet.model.Database;
+import br.com.alura.servlet.model.Enterprise;
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public class NewEnterprise {
+	
+	public static void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String enterpriseName = request.getParameter("name");
 		String openDateParam = request.getParameter("openDate");
@@ -33,7 +30,7 @@ public class NewEnterpriseServlet extends HttpServlet {
 		
 		Database.add(new Enterprise(enterpriseName, enterpriseOpenDate));
 		
-		response.sendRedirect("listEnterprises");
+		response.sendRedirect("enterprise?action=list");
 		
 	}
 	
