@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.alura.servlet.model.Database;
 import br.com.alura.servlet.model.Enterprise;
 
-public class NewEnterprise {
+public class AddEnterpriseController {
 	
-	public static void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public static String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String enterpriseName = request.getParameter("name");
 		String openDateParam = request.getParameter("openDate");
@@ -30,7 +30,7 @@ public class NewEnterprise {
 		
 		Database.add(new Enterprise(enterpriseName, enterpriseOpenDate));
 		
-		response.sendRedirect("enterprise?action=list");
+		return "redirect:listEnterprises";
 		
 	}
 	

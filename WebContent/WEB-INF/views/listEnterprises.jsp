@@ -4,19 +4,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<c:url value="/enterprise" var="enterpriseController" />
-<c:url value="/enterprise?action=remove&id=" var="removeEnterprisePath" />
-<c:url value="/enterprise?action=show&id=" var="showEnterprisePath" />
+<c:url value="/removeEnterprise?id=" var="removeEnterprisePath" />
+<c:url value="/showEnterprise?id=" var="showEnterprisePath" />
+<c:url value="/formAddEnterprise" var="createEnterprisePath" />
     
 <!DOCTYPE html>
 <html>
 <body style="font-size: larger; font-family: system-ui;">
 	
-	<c:if test="${not empty enterpriseName}">
-		Enterprise named "${enterpriseName}" created successfully!
-	</c:if>
-	
 	Enterprises: <br />
+	
+	<form action="${createEnterprisePath}" method="get">
+		<button type="submit">Create</button>
+	</form>
+	
 	<ul>
 		<c:forEach items="${enterprises}" var="e">
 			<li>

@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.alura.servlet.model.Database;
 
-public class RemoveEnterprise {
+public class RemoveEnterpriseController {
 	
-	public static void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public static String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer idToRemove = Integer.parseInt( request.getParameter("id") );
 		Database.removeBy(idToRemove);
 		
-		response.sendRedirect("enterprise?action=list");
+		return "redirect:listEnterprises";
 	}
 
 }

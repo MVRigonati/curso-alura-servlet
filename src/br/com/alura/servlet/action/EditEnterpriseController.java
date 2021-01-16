@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.alura.servlet.model.Database;
 
-public class EditEnterprise {
+public class EditEnterpriseController {
 	
-	public static void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public static String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Integer id = Integer.parseInt( request.getParameter("id") );
 		String newEnterpriseName = request.getParameter("name");
@@ -29,7 +29,7 @@ public class EditEnterprise {
 		
 		Database.update(id, newEnterpriseName, newEnterpriseOpenDate);
 		
-		response.sendRedirect("enterprise?action=list");
+		return "redirect:listEnterprises";
 		
 	}
 
