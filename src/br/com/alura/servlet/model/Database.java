@@ -7,20 +7,29 @@ import java.util.List;
 
 public class Database {
 	
-	private static List<Enterprise> list;
+	private static List<Enterprise> enterprises;
+	private static List<User> users;
 	private static Integer nextId;
 	
 	static {
-		Database.list = new ArrayList<>();
+		Database.enterprises = new ArrayList<>();
+		Database.users = new ArrayList<>();
 		Database.nextId = 1;
 		
-		Database.add(new Enterprise("Alura", new Date()));
-		Database.add(new Enterprise("Caelum", new Date()));
+		Database.addEnterprise(new Enterprise("Alura", new Date()));
+		Database.addEnterprise(new Enterprise("Caelum", new Date()));
+		
+		Database.addUser(new User("Marcus", "123"));
+		Database.addUser(new User("Vinicius", "321"));
 	}
 	
-	public static void add(Enterprise enterprise) {
+	public static void addEnterprise(Enterprise enterprise) {
 		enterprise.setId(getNextId());
-		Database.list.add(enterprise);
+		Database.enterprises.add(enterprise);
+	}
+	
+	public static void addUser(User newUser) {
+		Database.users.add(newUser);
 	}
 	
 	private static Integer getNextId() {
@@ -30,15 +39,15 @@ public class Database {
 	}
 
 	public static List<Enterprise> getAllEnterprises() {
-		return Collections.unmodifiableList(Database.list);
+		return Collections.unmodifiableList(Database.enterprises);
 	}
 
 	public static void removeBy(final Integer idToRemove) {
-		Database.list.removeIf(e -> e.getId().equals(idToRemove));
+		Database.enterprises.removeIf(e -> e.getId().equals(idToRemove));
 	}
 
 	public static Enterprise findBy(final Integer id) {
-		return Database.list.stream()
+		return Database.enterprises.stream()
 				.filter(e -> e.getId().equals(id))
 				.findFirst().get();
 	}
@@ -50,5 +59,12 @@ public class Database {
 			dbEnterprise.setOpenDate(newOpenDate);
 		}
 	}
+
+	public static User findUser(final String login, final String password) {
+		return Database.users.stream()
+			.filter(databaseUser -> databaseUser.compare(login, password))
+			.findFirst().orElse(null);
+	}
+	
 
 }

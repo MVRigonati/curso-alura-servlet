@@ -28,7 +28,7 @@ public class AddEnterpriseController {
 			throw new ServletException(ex);
 		}
 		
-		Database.add(new Enterprise(enterpriseName, enterpriseOpenDate));
+		Database.addEnterprise(new Enterprise(enterpriseName, enterpriseOpenDate));
 		
 		return "redirect:listEnterprises";
 		

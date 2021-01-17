@@ -7,10 +7,16 @@
 <c:url value="/removeEnterprise?id=" var="removeEnterprisePath" />
 <c:url value="/showEnterprise?id=" var="showEnterprisePath" />
 <c:url value="/formAddEnterprise" var="createEnterprisePath" />
+<c:url value="/logoutUser" var="logoutPath" />
     
 <!DOCTYPE html>
 <html>
 <body style="font-size: larger; font-family: system-ui;">
+	
+	User: ${loggedUser.login} <br>
+	<a href="${logoutPath}">Logout</a>
+	<br>
+	<br>
 	
 	Enterprises: <br />
 	

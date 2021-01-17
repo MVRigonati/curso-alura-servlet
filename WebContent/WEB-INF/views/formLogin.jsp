@@ -1,11 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:url value="/addEnterprise" var="addEnterpriseController" />
+<c:url value="/loginUser" var="loginPath" />
 
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Creating Enterprise</title>
+	<title>Login</title>
 	
 	<style>
 		.form {
@@ -17,9 +17,9 @@
 </head>
 <body>
 
-	<form action="${addEnterpriseController}" method="post" class="form">
-		Name: <input name="name" /> <br />
-		Open Date: <input name="openDate" /> <br />
+	<form action="${loginPath}" method="post" class="form">
+		Login: <input name="login" /> <br />
+		Password: <input type="password" name="password" /> <br />
 		
 		<input type="submit" />
 	</form>

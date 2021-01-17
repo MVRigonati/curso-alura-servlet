@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.alura.servlet.action.AddEnterpriseController;
 import br.com.alura.servlet.action.EditEnterpriseController;
+import br.com.alura.servlet.action.FormLoginController;
 import br.com.alura.servlet.action.ListEnterprisesController;
+import br.com.alura.servlet.action.LoginController;
+import br.com.alura.servlet.action.LogoutController;
 import br.com.alura.servlet.action.NewEnterpriseFormController;
 import br.com.alura.servlet.action.RemoveEnterpriseController;
 import br.com.alura.servlet.action.ShowEnterpriseController;
@@ -33,7 +36,13 @@ public class Controller extends HttpServlet {
 	@Override
 	protected void service(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
 		
-		final String requestName = req.getRequestURI().split("/")[2];
+		String requestName = req.getRequestURI().split("/")[2];
+		
+		boolean isUserLogged = req.getSession().getAttribute("loggedUser") != null;
+		boolean isProtectedPage = !("loginUser".equals(requestName) || "formLogin".equals(requestName));
+		if (!isUserLogged && isProtectedPage) {
+			requestName = "formLogin";
+		}
 		
 		String nextStep = "";
 		if (requestName.equals("listEnterprises")) {
@@ -53,6 +62,15 @@ public class Controller extends HttpServlet {
 			
 		} else if (requestName.equals("formAddEnterprise")) {
 			nextStep = NewEnterpriseFormController.exec(req, resp);
+			
+		} else if (requestName.equals("formLogin")) {
+			nextStep = FormLoginController.exec(req, resp);
+			
+		} else if (requestName.equals("loginUser")) {
+			nextStep = LoginController.exec(req, resp);
+			
+		} else if (requestName.equals("logoutUser")) {
+			nextStep = LogoutController.exec(req, resp);
 			
 		}
 		
