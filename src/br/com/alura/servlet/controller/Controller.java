@@ -36,13 +36,8 @@ public class Controller extends HttpServlet {
 	@Override
 	protected void service(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
 		
-		String requestName = req.getRequestURI().split("/")[2];
-		
-		boolean isUserLogged = req.getSession().getAttribute("loggedUser") != null;
-		boolean isProtectedPage = !("loginUser".equals(requestName) || "formLogin".equals(requestName));
-		if (!isUserLogged && isProtectedPage) {
-			requestName = "formLogin";
-		}
+		final String[] uriSplitted = req.getRequestURI().split("/");
+		String requestName = (uriSplitted.length > 2) ? uriSplitted[2] : "formLogin";
 		
 		String nextStep = "";
 		if (requestName.equals("listEnterprises")) {
